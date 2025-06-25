@@ -1,0 +1,117 @@
+<style>
+    .search-btn {
+        background-color: #ff6347;
+        color: #fff;
+        border-radius: 25rem;
+        padding: 0 1rem;
+    }
+
+    .search-btn:hover {
+        background-color: #ff6347;
+        color: #fff;
+    }
+
+    .search-btn i {
+        display: inline;
+        margin-right: 0.5rem;
+        /* min-width: 40%; */
+    }
+
+    .search-inp {
+        border-radius: 25px;
+        padding: 0rem 0.5rem 0rem 1rem;
+        min-width: 60%;
+    }
+
+    .nav-link {
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+    }
+
+    @media (max-width: 767.98px) {
+        .navbar-brand-text {
+            font-size: 1.2rem;
+        }
+
+        .search-inp {
+            width: 100px;
+            font-size: 0.9rem;
+        }
+
+        .search-btn {
+            font-size: 0.9rem;
+            padding: 0 0.7rem;
+        }
+    }
+
+    .navbar-toggler-icon {
+        height: 20px;
+        width: 20px;
+    }
+
+    .navbar-collapse {
+        background: #fff;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        position: fixed;
+        top: 100px;
+        /* Adjust this to your navbar height */
+        left: 0;
+        width: 100vw;
+        z-index: 1200;
+        padding: 1rem 1.5rem;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .navbar-collapse {
+            position: static !important;
+            background: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            width: auto !important;
+            border-radius: 0 !important;
+            top: auto !important;
+        }
+    }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+        <!-- Logo and Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="/listings">
+            <i class="fa-solid fa-handshake fa-xl" style="color: #fb5a3e;"></i>
+            <span class="ms-3 fw-bold navbar-brand-text" style="color:#f83b1a; font-size: 1.5rem;"><i>Roomio</i></span>
+        </a>
+        <!-- Search Bar (always visible) -->
+        <form class="d-flex align-items-center mx-2 flex-grow-1" role="search" action="/listings" method="GET"
+            style="max-width: 300px;">
+            <input class="form-control me-2 search-inp" type="search" name="city" placeholder="Search City or State" />
+            <button class="btn search-btn" type="submit">
+                <i class="fa-brands fa-searchengin"></i>Search
+            </button>
+        </form>
+
+        <!-- Toggler for nav links -->
+        <button class="navbar-toggler mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="padding-left: 8px;
+            padding-right: 8px;">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapsible Nav Links -->
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup"
+            style="margin-top: 5px;padding-top: 0px;padding-bottom: 0px;padding-left: 50px;">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/listings/new">Create List &nbsp;</a>
+                <% if(!currUser) { %>
+                    <a class="nav-link" href="/signup"><b>Signup</b></a>
+                    <a class="nav-link" href="/login"><b>Login</b></a>
+                    <% } %>
+                        <% if(currUser) { %>
+                            <a class="nav-link" href="/logout"><b>Logout</b></a>
+                            <% } %>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,132 @@
+<% layout("/layouts/boilerPlate") %>
+<div class="row">
+    <div class="col-8 offset-2">
+    <h3 class="mt-3"><i>Create a new listing <i class="fa-solid fa-user-secret"></i></i></h3>
+    <form method="POST" 
+    action="/listings" 
+    novalidate class="needs-validation" 
+    enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input 
+                name="listing[title]" 
+                placeholder="Enter your title" 
+                type="text" 
+                class="form-control"
+                required
+            />
+            <div class="valid-feedback">Title looks Good <i class="fa-solid fa-thumbs-up"></i></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" placeholder="Detailed info about the room, vibe, neighborhood"class="form-control" required></textarea>
+            <div class="invalid-feedback">Please Enter your Description</div>
+        </div>
+
+        <div class="row">
+        <div class="mb-3 col-8">
+            <label for="roomType" class="form-label">Room Type</label>
+            <select name="listing[roomType]" id="roomType" class="form-control" required>
+                <option value="" disabled selected>Select room type</option>
+                <option value="Single">Private Room</option>
+                <option value="Shared">Shared Room</option>
+                <option value="Double">PG</option>
+                <option value="Studio">Other</option>
+            </select>
+            <div class="invalid-feedback">Please select a room type</div>
+        </div>
+        
+        <div class="mb-3 col-md-4">
+                <label for="numBeds" class="form-label">No. Of beds</label>
+                <input name="listing[numBeds]" 
+                placeholder="Enter no. of beds" 
+                type="number" 
+                class="form-control"
+                required
+                />
+                <div class="invalid-feedback">Please Enter a valid Number of beds</div>
+            </div>
+        </div>
+
+        <!-- <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" class="form-control" required></textarea>
+            <div class="invalid-feedback">Please Enter your Description</div>
+        </div> -->
+
+        <!-- <div class="mb-3">
+            <label for="image" class="form-label">Uploads Image</label>
+            <input name="listing[image]" 
+            type="file"  
+            class="form-control"
+            required
+            />  
+            <div class="valid-feedback">If no image is specified, the default image will be displayed</div>
+        </div> -->
+        <!-- type ="file" -> is for uploading the file(img/pdf/etc)  -->
+        
+        <div class="mb-3">
+            <label for="price" class="form-label">Monthy Rent</label>
+            <input name="listing[price]" 
+            placeholder="Enter your price" 
+            class="form-control"
+            required
+            />
+            <div class="invalid-feedback">Please Enter a valid Price</div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-8">
+                <label for="Location" class="form-label">Full Address</label>
+                <input name="listing[location]" 
+                placeholder="Enter address with Pincode" 
+                type="text" 
+                class="form-control"
+                required
+                />
+                <div class="invalid-feedback">Location should be valid</div>
+            </div>
+
+            <div class="mb-3 col-md-4">
+                <label for="country" class="form-label">Country</label>
+                <input name="listing[country]" 
+                placeholder="Enter your Country" 
+                type="text" 
+                class="form-control"
+                required
+                />
+                <div class="invalid-feedback">Country name should be valid</div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label for="profilePic" class="form-label">Upload Profile Photo</label>
+                <input 
+                    type="file" 
+                    name="profilePic" 
+                    id="profilePic" 
+                    class="form-control"
+                    accept="image/*"
+                />
+                <div class="valid-feedback">Upload your profile picture</div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="image" class="form-label">Upload Room Photo</label>
+                <input name="listing[image]" 
+                    type="file"  
+                    class="form-control"
+                    required
+                />  
+                <div class="valid-feedback">Upload Room Photo</div>
+            </div>
+        </div>
+
+        <button class="btn btn-dark mb-2">ADD</button>
+        </form>
+    </div>
+</div>
+

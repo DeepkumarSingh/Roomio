@@ -1,0 +1,64 @@
+<!-- <style>
+    @media (max-width: 767.98px) {
+    .login-margin-fix {
+        margin-top: 120px; /* Adjust to match your navbar height + collapse */
+    }
+}
+</style> -->
+<% layout("/layouts/boilerPlate") %>
+<div class="row mt-3 login-margin-fix">
+    <h1 class="col-6 offset-3">Login</h1>
+    <div class="col-6 offset-3">
+        <form action="/login" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username / FullName</label>
+                <input 
+                    name="username" 
+                    id = "username"
+                    type="text" 
+                    class="form-control"
+                    required
+                />
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input 
+                    name="password" 
+                    id = "password"
+                    type="password" 
+                    class="form-control"
+                    required
+                />
+            </div>
+            <button class="btn btn-dark edit-btn mb-2 d-inline-block">Login</button>
+                <a class="btn btn-dark edit-btn mb-2 ms-0 d-inline-block" href="/signup">Signup</a>        
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var navbarCollapse = document.getElementById('navbarNavAltMarkup');
+    var loginRow = document.querySelector('.login-margin-fix');
+    var baseMargin = 40; // Height of navbar only
+    var extraMargin = 190; // Height when navbar menu is open (adjust as needed)
+
+    function adjustLoginMargin() {
+        if (window.innerWidth < 768 && navbarCollapse && navbarCollapse.classList.contains('show')) {
+            loginRow.style.marginTop = extraMargin + "px";
+        } else if (window.innerWidth < 768) {
+            loginRow.style.marginTop = baseMargin + "px";
+        } else {
+            loginRow.style.marginTop = "0";
+        }
+    }
+
+    if (navbarCollapse) {
+        navbarCollapse.addEventListener('shown.bs.collapse', adjustLoginMargin);
+        navbarCollapse.addEventListener('hidden.bs.collapse', adjustLoginMargin);
+    }
+    window.addEventListener('resize', adjustLoginMargin);
+    adjustLoginMargin();
+});
+</script>

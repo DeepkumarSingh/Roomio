@@ -1,0 +1,134 @@
+<% layout("/layouts/boilerPlate") %>
+<body>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+    <h3>Edit your Listing</h3>
+    <form method="POST" 
+    action="/listings/<%= listing._id %>?_method=PUT" 
+    novalidate
+        class="needs-validation"
+        enctype="multipart/form-data"
+        > 
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input name="listing[title]" 
+            value="<%= listing.title %>" 
+            type="text" class="form-control"
+            required
+            />
+            <div class="valid-feedback">Title looks Good <i class="fa-solid fa-thumbs-up"></i></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
+            <div class="invalid-feedback">Please Enter your Description</div>
+        </div>
+
+        <div class="row">
+                <div class="mb-3 col-md-8">
+                    <label for="roomType" class="form-label">Room Type</label>
+                    <select name="listing[roomType]" id="roomType" class="form-control" required>
+                        <option value="" disabled>Select room type</option>
+                        <option value="Single" <%= listing.roomType === 'Single' ? 'selected' : '' %>>Private Room</option>
+                        <option value="Shared" <%= listing.roomType === 'Shared' ? 'selected' : '' %>>Shared Room</option>
+                        <option value="Double" <%= listing.roomType === 'Double' ? 'selected' : '' %>>PG</option>
+                        <option value="Studio" <%= listing.roomType === 'Studio' ? 'selected' : '' %>>Other</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a room type</div>
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="numBeds" class="form-label">No. Of beds</label>
+                    <input name="listing[numBeds]" 
+                        id="numBeds"
+                        value="<%= listing.numBeds %>"
+                        placeholder="Enter no. of beds" 
+                        type="number" 
+                        class="form-control"
+                        required
+                    />
+                    <div class="invalid-feedback">Please enter a valid number of beds</div>
+                </div>
+        </div>
+        
+        <!-- <div class="mb-3">
+            <label for="Image" class="form-label">Upload New Image</label>
+            <input name="listing[image]" 
+            type="file"
+            class="form-control"
+            />  
+        </div> -->
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input name="listing[price]" 
+            value="<%= listing.price %>"
+            type="number"
+            class="form-control"
+            required
+            />
+            <div class="invalid-feedback">Please Enter a valid Price</div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-8">
+                <label for="Location" class="form-label">Location</label>
+                <input name="listing[location]" 
+                value="<%= listing.location %>" 
+                type="text"
+                class="form-control"
+                required
+                />
+                <div class="invalid-feedback">Location should be valid</div>
+        </div>
+
+            <div class="mb-3 col-md-4">
+                <label for="country" class="form-label">Country</label>
+                <input name="listing[country]" 
+                value="<%= listing.country %>"
+                type="text"
+                class="form-control"
+                required
+                />
+                <div class="invalid-feedback">Country name should be valid</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label for="profilePic" class="form-label">Your Profile Picture</label>
+                <% if (currentUser && currentUser.profilePic) { %>
+                    <div>Current: <img src="<%= currentUser.profilePic %>" alt="Profile" width="80" height ="80" class="rounded-circle mb-2"></div>
+                <% } %>
+                <input 
+                    type="file" 
+                    name="profilePic" 
+                    id="profilePic" 
+                    class="form-control"
+                    accept="image/*"
+                />
+                <div class="valid-feedback"></div>
+                <!-- Upload a new profile picture (optional) -->
+            </div>
+            
+            <div class="mb-3 col-md-6">
+                <div class="mt-2">Previous Uploaded Image<br>
+                    <img src="<%= orignalImageUrl %>" width="80" height ="55"/>
+                </div>
+                <label for="image" class="form-label">Upload New Room Image</label>
+                <input name="listing[image]" 
+                    type="file"
+                    class="form-control"
+                />  
+                <div class="valid-feedback"></div>
+                <!-- Upload a new room image (optional) -->
+            </div>
+        </div>
+
+        <button class="btn btn-dark edit-btn mb-5">Edit</button>
+    </form>
+    </div>
+</div>
+</body>

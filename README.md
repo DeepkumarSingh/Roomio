@@ -1,2 +1,3 @@
-# Major-Project-Wanderlust
-This is my 1st Major Project - Wanderlust
+
+# Roomio
+This is my fullstack project - roomio ( a flatmate finder wesbite )

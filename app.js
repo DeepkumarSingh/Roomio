@@ -22,7 +22,6 @@ const userRouter = require("./routes/user.js");
 const { preferences } = require('joi');
 
 const dbUrl = process.env.ATLASDB_URL;
-// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
 main()
   .then(() => {

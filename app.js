@@ -1,8 +1,24 @@
 if(process.env.NODE_ENV != "production"){
   require('dotenv').config();
 }
+const cron = require("node-cron");
+const axios = require("axios");
 const express = require("express");
 const app = express();
+// Cron job that runs every 15 minutes
+cron.schedule("*/15 * * * *", async () => {
+  console.log("⏰ Running cron task...");
+  try {
+    const res = await axios.get("https://roomio-5e5h.onrender.com/keepalive");
+    console.log("✅ Ping successful:", res.status);
+  } catch (err) {
+    console.error("❌ Ping failed:", err.message);
+  }
+});
+app.get('/keepalive', (req, res) => {
+  res.send('🟢 Server is alive!');
+});
+
 app.use(express.static('public'));
 const mongoose = require("mongoose");
 const path = require("path");
